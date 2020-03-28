@@ -1,0 +1,48 @@
+{
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier",
+      "plugin:prettier/recommended",
+      "prettier/@typescript-eslint"
+    ],
+    "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
+    "globals": {
+      "Promise": true,
+      "process": true
+    },
+    "env": {
+      "browser": true,
+      "jasmine": true,
+      "jest": true
+    },
+    "rules": {
+      "prettier/prettier": ["error", { "singleQuote": true }],
+      "@typescript-eslint/explicit-function-return-type": [
+        "error",
+        {
+          "allowTypedFunctionExpressions": true
+        }
+      ],
+      "@typescript-eslint/camelcase": [
+        "error",
+        {
+          "properties": "never",
+          "ignoreDestructuring": true
+        }
+      ],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    },
+    "settings": {
+      "react": {
+        "pragma": "React",
+        "version": "detect"
+      }
+    },
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "parser": "@typescript-eslint/parser"
+  }
