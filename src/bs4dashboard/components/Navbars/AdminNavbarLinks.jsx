@@ -15,10 +15,45 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { Component } from "react";
-import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
+import React, { Component } from 'react';
+import { NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
+import { logoutAsync, getCurrentSession } from 'utils';
 
 class AdminNavbarLinks extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+    };
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  async componentDidMount() {
+    try {
+      const userData = await getCurrentSession();
+      if (userData.email) {
+        this.setState({
+          email: userData.email,
+        });
+      }
+    } catch (e) {
+      console.log('getCurrentSession e', e);
+    }
+  }
+
+  handleLogout = async (event) => {
+    try {
+      // this.setState({ loading: true });
+      const res = window.confirm('Are you sure you want to log out?');
+      if (!res) return;
+      await logoutAsync();
+
+      return window.location.replace('/');
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   render() {
     const notification = (
       <div>
@@ -39,8 +74,7 @@ class AdminNavbarLinks extends Component {
             eventKey={2}
             title={notification}
             noCaret
-            id="basic-nav-dropdown"
-          >
+            id="basic-nav-dropdown">
             <MenuItem eventKey={2.1}>Notification 1</MenuItem>
             <MenuItem eventKey={2.2}>Notification 2</MenuItem>
             <MenuItem eventKey={2.3}>Notification 3</MenuItem>
@@ -54,13 +88,12 @@ class AdminNavbarLinks extends Component {
         </Nav>
         <Nav pullRight>
           <NavItem eventKey={1} href="#">
-            Account
+            Account - {this.state.email}
           </NavItem>
           <NavDropdown
             eventKey={2}
             title="Dropdown"
-            id="basic-nav-dropdown-right"
-          >
+            id="basic-nav-dropdown-right">
             <MenuItem eventKey={2.1}>Action</MenuItem>
             <MenuItem eventKey={2.2}>Another action</MenuItem>
             <MenuItem eventKey={2.3}>Something</MenuItem>
@@ -69,7 +102,7 @@ class AdminNavbarLinks extends Component {
             <MenuItem divider />
             <MenuItem eventKey={2.5}>Separated link</MenuItem>
           </NavDropdown>
-          <NavItem eventKey={3} href="#">
+          <NavItem eventKey={3} href="#" onClick={this.handleLogout}>
             Log out
           </NavItem>
         </Nav>

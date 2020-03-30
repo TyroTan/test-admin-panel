@@ -4,6 +4,7 @@ import {
   Route,
   Switch,
   BrowserRouter,
+  Redirect,
   // Redirect,
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -61,7 +62,7 @@ const App: React.FC = (): any => {
           // render={(props): React.ReactElement => <AdminLayout {...props} />}
         />
 
-        {/* <Redirect from="/" to="/admin/dashboard" /> */}
+        <Redirect from="/" to="/admin/dashboard" />
 
         <Route
           component={

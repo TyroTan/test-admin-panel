@@ -17,14 +17,17 @@
 */
 import React, { Component } from 'react';
 import { NavItem, Nav, NavDropdown, Dropdown } from 'react-bootstrap';
+import { logoutAsync } from 'utils';
 const MenuItem = Dropdown.Item;
 // import { Auth } from 'aws-amplify';
 
 class AdminNavbarLinks extends Component {
   handleLogout = async (event) => {
     try {
-      this.setState({ loading: true });
-      // await Auth.signOut();
+      const res = window.confirm('Are you sure you want to log out?');
+      if (!res) return;
+      // this.setState({ loading: true });
+      await logoutAsync();
 
       return window.location.replace('/');
     } catch (e) {

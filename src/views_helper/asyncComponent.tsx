@@ -69,9 +69,10 @@ export default function asyncComponent(
       try {
         if (parentProps.requiresAuth === true) {
           const authed = await getCurrentSession();
+          console.log('authedauthed', authed);
           Nprogress.done();
 
-          if (authed && authed.idToken) {
+          if (authed && authed.token) {
             if (this.mounted) {
               if (
                 parentProps.ifAuthedRedirectTo &&
