@@ -11,15 +11,15 @@
     "static/js/4.99ccb346.chunk.js": "/test-admin-panel/static/js/4.99ccb346.chunk.js",
     "static/js/4.99ccb346.chunk.js.map": "/test-admin-panel/static/js/4.99ccb346.chunk.js.map",
     "main.css": "/test-admin-panel/static/css/main.79bce37b.chunk.css",
-    "main.js": "/test-admin-panel/static/js/main.508f2495.chunk.js",
-    "main.js.map": "/test-admin-panel/static/js/main.508f2495.chunk.js.map",
+    "main.js": "/test-admin-panel/static/js/main.035c3737.chunk.js",
+    "main.js.map": "/test-admin-panel/static/js/main.035c3737.chunk.js.map",
     "runtime-main.js": "/test-admin-panel/static/js/runtime-main.2d8ae0f1.js",
     "runtime-main.js.map": "/test-admin-panel/static/js/runtime-main.2d8ae0f1.js.map",
     "static/css/7.ce27fb7c.chunk.css": "/test-admin-panel/static/css/7.ce27fb7c.chunk.css",
     "static/js/7.ea167cc5.chunk.js": "/test-admin-panel/static/js/7.ea167cc5.chunk.js",
     "static/js/7.ea167cc5.chunk.js.map": "/test-admin-panel/static/js/7.ea167cc5.chunk.js.map",
     "index.html": "/test-admin-panel/index.html",
-    "precache-manifest.fb4d2804d14edd35429c17915cbfb4f6.js": "/test-admin-panel/precache-manifest.fb4d2804d14edd35429c17915cbfb4f6.js",
+    "precache-manifest.890b947c7fd7ea49c6096e7926640aaa.js": "/test-admin-panel/precache-manifest.890b947c7fd7ea49c6096e7926640aaa.js",
     "service-worker.js": "/test-admin-panel/service-worker.js",
     "static/css/7.ce27fb7c.chunk.css.map": "/test-admin-panel/static/css/7.ce27fb7c.chunk.css.map",
     "static/css/main.79bce37b.chunk.css.map": "/test-admin-panel/static/css/main.79bce37b.chunk.css.map",
@@ -41,6 +41,6 @@
     "static/css/7.ce27fb7c.chunk.css",
     "static/js/7.ea167cc5.chunk.js",
     "static/css/main.79bce37b.chunk.css",
-    "static/js/main.508f2495.chunk.js"
+    "static/js/main.035c3737.chunk.js"
   ]
 }
