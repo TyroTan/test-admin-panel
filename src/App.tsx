@@ -18,7 +18,7 @@ import asyncComponent from './views_helper/asyncComponent';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const App: React.FC = (): any => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={window.location.pathname || ''}>
       <Switch>
         <Route
           path="/login"
