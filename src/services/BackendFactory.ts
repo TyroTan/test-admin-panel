@@ -5,7 +5,7 @@ import getCurrentSession from 'utils';
 
 const empty = {};
 
-const TOKEN_AUTH_PREFIX = `Token `;
+const TOKEN_AUTH_PREFIX = ``;
 export default class BackendFactoryClass {
   public req: BackendFactoryRequest;
   public constructor(opts = empty as BackendFactory) {
@@ -38,7 +38,7 @@ export default class BackendFactoryClass {
     // console.log(
     //   `${this.req.baseUrl}${queryUrlFull}`,
     //   'getRequest this.req',
-    //   queryUrlFull
+    //   queryUrlFull,
     // );
 
     return axios

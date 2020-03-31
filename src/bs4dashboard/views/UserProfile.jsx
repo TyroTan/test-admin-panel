@@ -30,9 +30,30 @@ import { FormInputs } from 'bs4dashboard/components/FormInputs/FormInputs.jsx';
 import { UserCard } from 'bs4dashboard/components/UserCard/UserCard.jsx';
 import Button from 'bs4dashboard/components/CustomButton/CustomButton.jsx';
 
+import { getCurrentSession } from '../../utils';
 import avatar from 'bs4dashboard/assets/img/faces/face-3.jpg';
 
 class UserProfile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+    };
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  async componentDidMount() {
+    const userSession = await getCurrentSession();
+
+    if (userSession?.email) {
+      this.setState({
+        email: userSession.email,
+      });
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   render() {
     return (
       <div className="content">
@@ -44,28 +65,15 @@ class UserProfile extends Component {
                 content={
                   <form>
                     <FormInputs
-                      ncols={['col-md-5', 'col-md-3', 'col-md-4']}
+                      ncols={['col-md-12']}
                       properties={[
-                        {
-                          label: 'Company (disabled)',
-                          type: 'text',
-                          bsClass: 'form-control',
-                          placeholder: 'Company',
-                          defaultValue: 'Creative Code Inc.',
-                          disabled: true,
-                        },
-                        {
-                          label: 'Username',
-                          type: 'text',
-                          bsClass: 'form-control',
-                          placeholder: 'Username',
-                          defaultValue: 'michael23',
-                        },
                         {
                           label: 'Email address',
                           type: 'email',
                           bsClass: 'form-control',
                           placeholder: 'Email',
+                          defaultValue: this.state.email,
+                          disabled: true,
                         },
                       ]}
                     />
@@ -73,74 +81,21 @@ class UserProfile extends Component {
                       ncols={['col-md-6', 'col-md-6']}
                       properties={[
                         {
-                          label: 'First name',
+                          label: 'Password',
                           type: 'text',
                           bsClass: 'form-control',
-                          placeholder: 'First name',
-                          defaultValue: 'Mike',
+                          placeholder: 'Password',
+                          defaultValue: '',
                         },
                         {
-                          label: 'Last name',
+                          label: 'New Password',
                           type: 'text',
                           bsClass: 'form-control',
-                          placeholder: 'Last name',
-                          defaultValue: 'Andrew',
+                          placeholder: 'New Password',
+                          defaultValue: '',
                         },
                       ]}
                     />
-                    <FormInputs
-                      ncols={['col-md-12']}
-                      properties={[
-                        {
-                          label: 'Adress',
-                          type: 'text',
-                          bsClass: 'form-control',
-                          placeholder: 'Home Adress',
-                          defaultValue:
-                            'Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09',
-                        },
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={['col-md-4', 'col-md-4', 'col-md-4']}
-                      properties={[
-                        {
-                          label: 'City',
-                          type: 'text',
-                          bsClass: 'form-control',
-                          placeholder: 'City',
-                          defaultValue: 'Mike',
-                        },
-                        {
-                          label: 'Country',
-                          type: 'text',
-                          bsClass: 'form-control',
-                          placeholder: 'Country',
-                          defaultValue: 'Andrew',
-                        },
-                        {
-                          label: 'Postal Code',
-                          type: 'number',
-                          bsClass: 'form-control',
-                          placeholder: 'ZIP Code',
-                        },
-                      ]}
-                    />
-
-                    <Row>
-                      <Col md={12}>
-                        <FormGroup controlId="formControlsTextarea">
-                          <ControlLabel>About Me</ControlLabel>
-                          <FormControl
-                            rows="5"
-                            componentClass="textarea"
-                            bsClass="form-control"
-                            placeholder="Here can be your description"
-                            defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
                     <Button bsStyle="info" pullRight fill type="submit">
                       Update Profile
                     </Button>

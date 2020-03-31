@@ -48,6 +48,7 @@
   "homepage" : "http://slugs99.github.io/test-admin-panel",
   "scripts": {
     "start": "react-scripts start",
+    "startdev": "REACT_APP_API_URL=http://localhost:3000 react-scripts start",
     "build": "REACT_APP_API_URL=http://209.97.165.153:3000 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

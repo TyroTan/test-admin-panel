@@ -1,9 +1,21 @@
 import { sendGet, sendPost } from 'services/BackendFactory';
-import { AxiosResponse } from 'axios';
 
 const usersGET = async (opts: Request): Promise<Response> => {
   return sendGet({
-    resource: `users`,
+    resource: `user/`,
+    ...opts,
+  });
+};
+
+const userPOST = async (
+  opts: RequestPOST<{
+    email: string;
+    name?: string;
+    password: string;
+  }>,
+): Promise<Response> => {
+  return sendPost({
+    resource: `user/`,
     ...opts,
   });
 };
@@ -21,4 +33,4 @@ const loginPOST = async (
 };
 
 export default usersGET;
-export { usersGET, loginPOST };
+export { usersGET, userPOST, loginPOST };

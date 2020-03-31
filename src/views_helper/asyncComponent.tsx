@@ -69,7 +69,6 @@ export default function asyncComponent(
       try {
         if (parentProps.requiresAuth === true) {
           const authed = await getCurrentSession();
-          console.log('authedauthed', authed);
           Nprogress.done();
 
           if (authed && authed.token) {
@@ -84,8 +83,6 @@ export default function asyncComponent(
 
                 return;
               }
-
-              console.log('typeof Component', typeof Component);
 
               this.setState({
                 component: <Component {...this.props} />,

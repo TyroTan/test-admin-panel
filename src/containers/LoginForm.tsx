@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  Panel,
-  FormGroup,
-  ControlLabel,
-  FormControl,
-  HelpBlock,
-  Button,
-} from 'react-bootstrap';
+import { Panel, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import { loginPOST } from 'services/backend';
-import { setCurrentSession } from 'utils';
+import { loginPOST } from '../services/backend';
+import FieldGroup from '../commons/components/FieldGroup';
+import { setCurrentSession, getAxios422ResponseMsg } from 'utils';
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,6 +21,13 @@ const Content = styled.div`
 const PanelTitle = styled(Panel.Title)`
   text-align: center;
   font-weight: bold;
+`;
+
+const SubmitBtnWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 interface State {
@@ -63,14 +64,15 @@ class LoginForm extends React.Component<{}, State> {
     e.preventDefault();
     const { email, password } = this.state;
     try {
+      this.setState({
+        loading: true,
+      });
       const result = await loginPOST({
         data: {
           email,
           password,
         },
       });
-
-      console.log('resultresult', result);
 
       if (result && result.token) {
         setCurrentSession(result);
@@ -79,14 +81,15 @@ class LoginForm extends React.Component<{}, State> {
       }
 
       this.setState({
-        loading: true,
+        loading: false,
       });
     } catch (e) {
       this.setState({
-        loading: true,
+        loading: false,
       });
-      if (e?.response?.data?.msg) {
-        alert(e?.response?.data?.msg);
+      const msg = getAxios422ResponseMsg(e);
+      if (msg) {
+        alert(msg);
       }
     }
   }
@@ -116,9 +119,14 @@ class LoginForm extends React.Component<{}, State> {
                   value={this.state.password}
                   onChange={this.onChangePassword}
                 />
-                <Button className="btn btn-primary" type="submit">
-                  Submit
-                </Button>
+                <SubmitBtnWrapper>
+                  <Button
+                    disabled={this.state.loading}
+                    className="btn btn-info"
+                    type="submit">
+                    Submit
+                  </Button>
+                </SubmitBtnWrapper>
               </form>
             </Panel.Body>
           </Panel>
@@ -129,21 +137,3 @@ class LoginForm extends React.Component<{}, State> {
 }
 
 export default LoginForm;
-
-/* eslint-disable-next-line react/prop-types */
-const FieldGroup = ({
-  id,
-  label,
-  help = '',
-  ...props
-}: {
-  [x: string]: any;
-}): JSX.Element => {
-  return (
-    <FormGroup controlId={id}>
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
-      {help && <HelpBlock>{help}</HelpBlock>}
-    </FormGroup>
-  );
-};
