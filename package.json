@@ -25,7 +25,7 @@
     "@types/query-string": "^6.3.0",
     "@types/react-router": "^5.1.4",
     "@types/styled-components": "^5.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "3.3.7",
     "chartist": "^0.11.4",
     "node-sass": "^4.13.1",
